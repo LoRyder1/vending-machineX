@@ -18,6 +18,6 @@ end
 
 class VendingMachine
   def insert_coin coin
-    
+        
   end
 end

@@ -10,6 +10,12 @@ describe 'VendingMachine' do
     it 'method takes in one argument' do
       expect(subject.method(:insert_coin).arity).to eq 1
     end
+
+    it 'inserting coin adds value to current amount' do
+      allow(coin).to receive_messages(value: 5)
+      subject.insert_coin(coin)
+      expect(subject.current_amount).to eq 5
+    end
   end
 end
 
