@@ -3,7 +3,7 @@ describe 'VendingMachine' do
   subject {VendingMachine.new}
 
   describe '#insert_coin' do
-    xit 'is defined as a method' do
+    it 'is defined as a method' do
       expect(VendingMachine.method_defined?(:insert_coin)).to eq true
     end
   end
