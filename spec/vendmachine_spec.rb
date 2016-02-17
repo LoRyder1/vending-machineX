@@ -6,6 +6,8 @@ describe 'VendingMachine' do
     it 'is defined as a method' do
       expect(VendingMachine.method_defined?(:insert_coin)).to eq true
     end
+
+    it 'inserting coin adds value of coin to current amount'
   end
 end
 
@@ -13,7 +15,18 @@ describe 'Coin' do
   let(:num) {double('num')}
   subject {Coin.new(num, num)}
 
-  it 'expects to take in two arguments' do
+  def set_coin weight, size
+    allow(subject).to receive_messages(weight: weight, size: size)
+  end
+
+  it 'new instance takes in two arguments' do
     expect(subject.method(:initialize).arity).to eq 2
+  end
+
+  describe '#set_value' do
+    it 'returns value of coin' do
+      set_coin 2,2 ; subject.set_value
+      expect(subject.value).to eq 5
+    end
   end
 end
