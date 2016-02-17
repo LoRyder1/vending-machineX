@@ -28,5 +28,11 @@ describe 'Coin' do
       set_coin 2,2 ; subject.set_value
       expect(subject.value).to eq 5
     end
+
+    it 'returns value of quarter' do
+      set_coin 3,3; subject.set_value
+      expect(subject.value).to eq 25
+    end
+
   end
 end
