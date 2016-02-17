@@ -14,6 +14,6 @@ describe 'Coin' do
   subject {Coin.new(num, num)}
 
   it 'expects to take in two arguments' do
-    expect(subject.method(:initalize).arity).to eq 2
+    expect(subject.method(:initialize).arity).to eq 2
   end
 end
