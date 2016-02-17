@@ -24,7 +24,7 @@ describe 'Coin' do
   end
 
   describe '#set_value' do
-    it 'returns value of coin' do
+    it 'returns value of nickel' do
       set_coin 2,2 ; subject.set_value
       expect(subject.value).to eq 5
     end
