@@ -7,7 +7,9 @@ describe 'VendingMachine' do
       expect(VendingMachine.method_defined?(:insert_coin)).to eq true
     end
 
-    it 'inserting coin adds value of coin to current amount'
+    it 'method takes in one argument' do
+      expect(subject.method(:insert_coin).arity).to eq 1
+    end
   end
 end
 

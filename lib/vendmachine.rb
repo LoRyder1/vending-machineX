@@ -17,7 +17,7 @@ class Coin
 end
 
 class VendingMachine
-  def insert_coin
+  def insert_coin coin
     
   end
 end
