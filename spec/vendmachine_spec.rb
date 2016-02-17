@@ -25,14 +25,18 @@ describe 'Coin' do
 
   describe '#set_value' do
     it 'returns value of nickel' do
-      set_coin 2,2 ; subject.set_value
+      set_coin 3,3 ; subject.set_value
       expect(subject.value).to eq 5
     end
 
     it 'returns value of quarter' do
-      set_coin 3,3; subject.set_value
+      set_coin 4,4; subject.set_value
       expect(subject.value).to eq 25
     end
 
+    it 'returns value for dime' do
+      set_coin 2,2; subject.set_value
+      expect(subject.value).to eq 10
+    end
   end
 end
