@@ -8,6 +8,8 @@ class Coin
   def set_value
     if weight == 2 && size == 2
       @value = 5
+    elsif weight == 3 && size == 3
+      @value = 25
     end
   end
 end
