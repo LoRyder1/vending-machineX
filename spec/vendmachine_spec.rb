@@ -52,6 +52,16 @@ describe 'VendingMachine' do
   end
 end
 
+describe 'Product' do
+  let(:num) {double('num')}
+  let(:name) {double('name')}
+  subject {Product.new(num, name)}
+
+  it 'new instance takes in two arguments' do
+    expect(subject.method(:initialize).arity).to eq 2
+  end
+end
+
 describe 'Coin' do
   let(:num) {double('num')}
   subject {Coin.new(num, num)}
