@@ -1,5 +1,6 @@
 describe 'VendingMachine' do
   let(:coin) {double('coin')}
+  let(:product) {double('product')}
   subject {VendingMachine.new}
 
   def set_coin_value value
@@ -54,6 +55,11 @@ describe 'VendingMachine' do
   describe '#select_product' do
     it 'method takes in one argument' do
       expect(subject.method(:select_product).arity).to eq 1
+    end
+
+    it 'selecting a product places it in the dispenser' do
+      subject.select_product(product)
+      expect(subject.dispenser[0]).to eq product
     end
   end
 end
