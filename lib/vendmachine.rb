@@ -20,10 +20,12 @@ class Coin
 end
 
 class VendingMachine
-  attr_reader :current_amount
+  attr_reader :current_amount, :display
   def initialize
     @current_amount = 0
+    @display = 'INSERT COIN'
   end
+
 
   def insert_coin coin
     @current_amount += coin.value
