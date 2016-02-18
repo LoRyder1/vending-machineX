@@ -46,7 +46,7 @@ describe 'VendingMachine' do
 
   describe '#reject_coin' do
     it 'rejected coins are put in coin return' do
-      reject_coin(coin)
+      subject.reject_coin(coin)
       expect(subject.coin_return[0]).to eq coin
     end
   end

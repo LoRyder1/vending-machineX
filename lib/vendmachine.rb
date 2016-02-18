@@ -20,10 +20,11 @@ class Coin
 end
 
 class VendingMachine
-  attr_reader :current_amount, :display
+  attr_reader :current_amount, :display, :coin_return
   def initialize
     @current_amount = 0
     @display = 'INSERT COIN'
+    @coin_return = []
   end
 
   def insert_coin coin
@@ -37,5 +38,9 @@ class VendingMachine
     else
       @display = "#{coin.value}"
     end
+  end
+
+  def reject_coin coin
+    @coin_return.push(coin)
   end
 end
