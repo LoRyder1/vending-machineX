@@ -11,7 +11,7 @@ Then(/^the value of the (\S[a-z]*) will be added to current amount$/) do |coin|
 end
 
 When(/^I insert a (\S[a-z]*) into vending machine$/) do |coin|
-  @vend.insert_coin(coin.upcase)
+  @vend.insert_coin(coin)
 end
 
 Then(/^the coin will be rejected/) do

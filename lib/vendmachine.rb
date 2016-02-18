@@ -13,6 +13,8 @@ class Coin
       @value = 25
     elsif weight == 2 && size == 2
       @value = 10
+    else
+      @value = 0
     end
   end
 end

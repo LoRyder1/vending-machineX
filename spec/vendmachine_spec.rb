@@ -54,5 +54,10 @@ describe 'Coin' do
       set_coin 2,2; subject.set_value
       expect(subject.value).to eq 10
     end
+
+    it 'returns value for penny' do
+      set_coin 1,1; subject.set_value
+      expect(suject.value).to eq 0
+    end
   end
 end
