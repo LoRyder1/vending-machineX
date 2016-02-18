@@ -15,5 +15,5 @@ When(/^I insert a (\S[a-z]*) into vending machine$/) do |coin|
 end
 
 Then(/^the coin will be rejected/) do
-  expect(@vend.display).to eq 'REJECTED COIN'
+  expect(@vend.display).to eq 'COIN REJECTED'
 end

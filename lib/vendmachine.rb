@@ -26,9 +26,15 @@ class VendingMachine
     @display = 'INSERT COIN'
   end
 
-
   def insert_coin coin
-    @display = 'COIN REJECTED' if coin.value == 1
+    @display = 'COIN REJECTED' if coin.value == 0
     @current_amount += coin.value
   end
 end
+
+# PENNY = Coin.new(1,1)
+
+# @vend = VendingMachine.new
+# @vend.insert_coin(PENNY)
+
+# p @vend.current_amount

@@ -32,7 +32,7 @@ describe 'VendingMachine' do
     end
 
     it "when a penny is inserted display reads 'COIN REJECTED'" do
-      set_coin_value 1; subject.insert_coin(coin)
+      set_coin_value 0; subject.insert_coin(coin)
       expect(subject.display).to eq 'COIN REJECTED'
     end
   end
