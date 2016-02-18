@@ -7,6 +7,10 @@ describe 'VendingMachine' do
     allow(coin).to receive(:value).and_return value
   end
 
+  def set_product_value value
+    allow(product).to receive(:value).and_return value
+  end
+
   describe '#insert_coin' do
     it 'is defined as a method' do
       expect(VendingMachine.method_defined?(:insert_coin)).to eq true
@@ -58,8 +62,13 @@ describe 'VendingMachine' do
     end
 
     it 'selecting a product places it in the dispenser' do
-      subject.select_product(product)
+      set_product_value 0; subject.select_product(product)
       expect(subject.dispenser[0]).to eq product
+    end
+
+    it 'does not dispense if current amount < product value' do
+      set_product_value 50; subject.select_product(product)
+      expect(subject.dispenser[0]).to eq nil
     end
   end
 end
