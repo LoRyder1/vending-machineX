@@ -38,7 +38,17 @@ describe 'VendingMachine' do
       expect(subject.display).to eq 'COIN REJECTED'
     end
 
-    it 'updates display to current amount'
+    it 'updates display to current amount' do 
+      set_coin_value 25; subject.update_display(coin)
+      expect(subject.display).to eq '25'
+    end
+  end
+
+  describe '#reject_coin' do
+    it 'rejected coins are put in coin return' do
+      reject_coin(coin)
+      expect(subject.coin_return[0]).to eq coin
+    end
   end
 end
 

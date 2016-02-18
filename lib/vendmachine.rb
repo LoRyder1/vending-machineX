@@ -32,6 +32,10 @@ class VendingMachine
   end
 
   def update_display coin
-    @display = 'COIN REJECTED' if coin.value == 0
+    if coin.value == 0
+      @display = 'COIN REJECTED'
+    else
+      @display = "#{coin.value}"
+    end
   end
 end
