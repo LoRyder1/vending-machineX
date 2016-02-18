@@ -49,4 +49,8 @@ class VendingMachine
   def reject_coin coin
     @coin_return.push(coin)
   end
+
+  def select_product product
+    
+  end
 end
