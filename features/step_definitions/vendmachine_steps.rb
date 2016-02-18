@@ -21,4 +21,16 @@ Then(/^the coin will be rejected/) do
 end
 
 #=================================================
+CHIPS = Product.new(50,'chips')
 
+When(/^I select a (\S[a-z]*) product$/) do |product|
+  @vend.select_product(product)
+end
+
+Then(/^the (\S[a-z]*) product is dispensed/) do |product|
+  expect(@vend.dispenser[0]).to eq product
+end
+
+Then(/^the display reads (\w+)\s+(\w+)\Z $/) do |msg|
+  expect(@vend.display).to eq msg
+end
