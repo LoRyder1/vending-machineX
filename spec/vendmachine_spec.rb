@@ -25,6 +25,17 @@ describe 'VendingMachine' do
       expect(subject.current_amount).to eq 25
     end
   end
+
+  describe '#display' do
+    it "when no coin is inserted display reads 'INSERT COIN'" do
+      expect(subject.display).to eq 'INSERT COIN'
+    end
+
+    it "when a penny is inserted display reads 'COIN REJECTED'" do
+      set_coin_value 1; subject.insert_coin(coin)
+      expect(subject.display).to eq 'COIN REJECTED'
+    end
+  end
 end
 
 describe 'Coin' do
@@ -57,7 +68,7 @@ describe 'Coin' do
 
     it 'returns value for penny' do
       set_coin 1,1; subject.set_value
-      expect(suject.value).to eq 0
+      expect(subject.value).to eq 0
     end
   end
 end
