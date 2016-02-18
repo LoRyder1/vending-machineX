@@ -1,6 +1,8 @@
 describe 'VendingMachine' do
   let(:coin) {double('coin')}
   let(:product) {double('product')}
+  let(:current_amount) {double('current_amount')}
+  # let(:current_amount) {double('current_amount')}
   subject {VendingMachine.new}
 
   def set_coin_value value
@@ -9,6 +11,11 @@ describe 'VendingMachine' do
 
   def set_product_value value
     allow(product).to receive(:value).and_return value
+  end
+
+  def set_current_amount value
+    allow(subject).to receive(:current_amount).and_return value
+    # subject.current_amount = value
   end
 
   describe '#insert_coin' do
@@ -66,9 +73,18 @@ describe 'VendingMachine' do
       expect(subject.dispenser[0]).to eq product
     end
 
-    it 'does not dispense if current amount < product value' do
+    xit 'does not dispense if current amount < product value' do
       set_product_value 50; subject.select_product(product)
       expect(subject.dispenser[0]).to eq nil
+    end
+  end
+
+  describe '#buy_product' do
+    let(:current_amount) {50}
+
+    it 'subtracts value of product from current amount' do
+      set_product_value 50; subject.buy_product(product)
+      expect(subject.current_amount).to eq 0
     end
   end
 end

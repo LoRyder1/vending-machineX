@@ -27,8 +27,8 @@ end
 
 class VendingMachine
   attr_reader :current_amount, :display, :coin_return, :dispenser
-  def initialize
-    @current_amount = 0
+  def initialize current_amount=0
+    @current_amount = current_amount
     @display = 'INSERT COIN'
     @coin_return = []
     @dispenser = []
