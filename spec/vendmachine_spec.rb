@@ -2,6 +2,10 @@ describe 'VendingMachine' do
   let(:coin) {double('coin')}
   subject {VendingMachine.new}
 
+  def set_coin_value value
+    allow(coin).to receive(:value).and_return value
+  end
+
   describe '#insert_coin' do
     it 'is defined as a method' do
       expect(VendingMachine.method_defined?(:insert_coin)).to eq true
@@ -11,10 +15,14 @@ describe 'VendingMachine' do
       expect(subject.method(:insert_coin).arity).to eq 1
     end
 
-    it 'inserting coin adds value to current amount' do
-      allow(coin).to receive_messages(value: 5)
-      subject.insert_coin(coin)
+    it 'inserting nickel adds appropriate value to current amount' do
+      set_coin_value 5; subject.insert_coin(coin)
       expect(subject.current_amount).to eq 5
+    end
+
+    it 'inserting a quarter adds appropriate value to current amount' do
+      set_coin_value 25; subject.insert_coin(coin)
+      expect(subject.current_amount).to eq 25
     end
   end
 end
@@ -33,7 +41,7 @@ describe 'Coin' do
 
   describe '#set_value' do
     it 'returns value of nickel' do
-      set_coin 3,3 ; subject.set_value
+      set_coin 3,3; subject.set_value
       expect(subject.value).to eq 5
     end
 
