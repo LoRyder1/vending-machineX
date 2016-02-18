@@ -3,6 +3,7 @@ class Coin
   def initialize weight, size
     @weight, @size = weight, size
     @value = nil
+    set_value
   end
 
   def set_value
