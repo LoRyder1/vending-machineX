@@ -50,6 +50,12 @@ describe 'VendingMachine' do
       expect(subject.coin_return[0]).to eq coin
     end
   end
+
+  describe '#select_product' do
+    it 'method takes in one argument' do
+      expect(subject.method(:select_product).arity).to eq 1
+    end
+  end
 end
 
 describe 'Product' do
