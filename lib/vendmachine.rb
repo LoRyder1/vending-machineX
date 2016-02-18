@@ -26,11 +26,12 @@ class Coin
 end
 
 class VendingMachine
-  attr_reader :current_amount, :display, :coin_return
+  attr_reader :current_amount, :display, :coin_return, :dispenser
   def initialize
     @current_amount = 0
     @display = 'INSERT COIN'
     @coin_return = []
+    @dispenser = []
   end
 
   def insert_coin coin
@@ -51,6 +52,6 @@ class VendingMachine
   end
 
   def select_product product
-    
+    @dispenser.push(product)
   end
 end
