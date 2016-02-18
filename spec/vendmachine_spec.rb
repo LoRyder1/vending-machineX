@@ -34,7 +34,7 @@ describe 'VendingMachine' do
 
   describe '#update_display' do
     it "updates display to 'COIN REJECTED' if coin is rejected" do 
-      set_coin_value 0; update_display(coin)
+      set_coin_value 0; subject.update_display(coin)
       expect(subject.display).to eq 'COIN REJECTED'
     end
 
