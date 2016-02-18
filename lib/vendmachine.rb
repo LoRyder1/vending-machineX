@@ -1,3 +1,9 @@
+class Product
+  def initialize price, name
+    @price, @name = price, name
+  end
+end
+
 class Coin
   attr_reader :weight, :size, :value
   def initialize weight, size
