@@ -52,7 +52,12 @@ class VendingMachine
   end
 
   def select_product product
-    @dispenser.push(product)
+    if @current_amount < product.value
+      nil
+    else
+      buy_product(product)
+      @dispenser.push(product)
+    end
   end
 
   def buy_product product
