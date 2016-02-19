@@ -38,3 +38,7 @@ end
 Then(/^the display reads THANK YOU$/) do
   expect(@vend.display).to eq "THANK YOU"
 end
+
+Then(/^the remaining money is in coin return/) do
+  expect(@vend.coin_return).to eq 25
+end
