@@ -54,4 +54,8 @@ class VendingMachine
   def select_product product
     @dispenser.push(product)
   end
+
+  def buy_product product
+    @current_amount -= product.value
+  end
 end

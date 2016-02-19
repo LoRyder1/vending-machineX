@@ -73,7 +73,7 @@ describe 'VendingMachine' do
       expect(subject.dispenser[0]).to eq product
     end
 
-    xit 'does not dispense if current amount < product value' do
+    it 'does not dispense if current amount < product value' do
       set_product_value 50; subject.select_product(product)
       expect(subject.dispenser[0]).to eq nil
     end
@@ -81,6 +81,7 @@ describe 'VendingMachine' do
 
   describe '#buy_product' do
     let(:current_amount) {50}
+    subject {VendingMachine.new(current_amount)}
 
     it 'subtracts value of product from current amount' do
       set_product_value 50; subject.buy_product(product)
