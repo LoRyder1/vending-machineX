@@ -8,4 +8,5 @@ So that i can give them an incentive to put money in the machine
   When I insert a quarter into vending machine
   When I select a chips product
   Then the chips product is dispensed
+  And the current amount is 0
   And the display reads THANK YOU

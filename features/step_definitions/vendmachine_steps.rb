@@ -31,6 +31,10 @@ Then(/^the (\S[a-z]*) product is dispensed/) do |product|
   expect(@vend.dispenser[0]).to eq product
 end
 
-Then(/^the display reads (\w+)\s+(\w+)\Z $/) do |msg|
-  expect(@vend.display).to eq msg
+Then(/^the current amount is (\d+)$/) do |amount|
+  expect(@vend.current_amount).to eq amount
+end
+
+Then(/^the display reads THANK YOU$/) do
+  expect(@vend.display).to eq "THANK YOU"
 end

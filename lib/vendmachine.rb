@@ -1,6 +1,7 @@
 class Product
-  def initialize price, name
-    @price, @name = price, name
+  attr_reader :value, :name
+  def initialize value, name
+    @value, @name = value, name
   end
 end
 
@@ -53,10 +54,11 @@ class VendingMachine
 
   def select_product product
     if @current_amount < product.value
-      nil
+      @display = "#{product.value}"
     else
       buy_product(product)
       @dispenser.push(product)
+      @display = 'THANK YOU'
     end
   end
 
