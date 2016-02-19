@@ -1,8 +1,6 @@
 describe 'VendingMachine' do
   let(:coin) {double('coin')}
   let(:product) {double('product')}
-  let(:current_amount) {double('current_amount')}
-  # let(:current_amount) {double('current_amount')}
   subject {VendingMachine.new}
 
   def set_coin_value value
