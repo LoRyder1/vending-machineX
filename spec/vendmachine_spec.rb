@@ -91,6 +91,15 @@ describe 'VendingMachine' do
       expect(subject.current_amount).to eq 0
     end
   end
+
+  describe '#set_coin_return' do
+    let(:current_amount) {25}
+    
+    it 'leftover change is placed in coin return' do
+      set_coin_return(current_amount)
+      expect(subject.coin_return[0]).to eq coin
+    end
+  end
 end
 
 describe 'Product' do
