@@ -77,6 +77,11 @@ describe 'VendingMachine' do
       set_product_value 50; subject.select_product(product)
       expect(subject.dispenser[0]).to eq nil
     end
+
+    it 'if current amount < product value display shows product value' do
+      set_product_value 50; subject.select_product(product)
+      expect(subject.display).to eq "50"
+    end
   end
 
   describe '#buy_product' do
