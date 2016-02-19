@@ -26,6 +26,11 @@ class Coin
   end
 end
 
+QUARTER = Coin.new(4,4)
+NICKEL = Coin.new(3,3)
+DIME = Coin.new(2,2)
+PENNY = Coin.new(1,1)
+
 class VendingMachine
   attr_reader :current_amount, :display, :coin_return, :dispenser
   def initialize current_amount=0
@@ -64,5 +69,12 @@ class VendingMachine
 
   def buy_product product
     @current_amount -= product.value
+  end
+
+  def set_coin_return amount
+    if amount == 25
+      @coin_return.push(QUARTER)
+      @current_amount = 0
+    end
   end
 end
