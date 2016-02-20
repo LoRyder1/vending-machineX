@@ -71,40 +71,26 @@ class VendingMachine
 
   def buy_product product
     @current_amount -= product.value
-    set_coin_return(@current_amount)
+    set_coin_return(@current_amount) if @current_amount !=0
   end
 
   def set_coin_return amount
     coin_hash = {QUARTER: 25, DIME: 10, NICKEL: 5}
-    symbol = coin_hash.key(amount)
-    coin = Object.const_get(symbol)
-    @coin_return.push(coin)
+    sort_change(amount).each do |string|
+      coin = Object.const_get(string)
+      @coin_return.push(coin)
+    end
     @current_amount = 0
   end
 
   def sort_change amount
-    # coin_hash = {QUARTER: 25, DIME: 10, NICKEL: 5}    
-    coin_hash = {QUARTER: 25}
+    coin_hash = {QUARTER: 25, DIME: 10, NICKEL: 5}    
     sorted = []
     coin_hash.each_key do |key|
-      binding.pry
-      x = key.to_s
       how_many = amount/coin_hash[key]
-      # fill(12, array.size, 4)
-      sorted.fill(x,sorted.size, how_many)
-      # sorted.push( x * how_many)
+      sorted.fill(key.to_s,sorted.size, how_many)
+      amount %= coin_hash[key]
     end
     sorted
   end
 end
-
-p VendingMachine.new.sort_change(50)
-
-# def to_roman(num)
-#   roman = ""
-#   ROMAN_NUMBERS.each_key do |key|
-#     roman += ROMAN_NUMBERS[key] * (num/key)
-#     num %= key
-#   end
-#   roman
-# end

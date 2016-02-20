@@ -113,7 +113,7 @@ describe 'VendingMachine' do
 
   describe '#sort_change' do
     it 'customer on pushing coin return can get money back' do
-      expect(subject.sort_change(35)).to eq [QUARTER,DIME]
+      expect(subject.sort_change(35)).to eq ["QUARTER","DIME"]
     end
   end
 end
