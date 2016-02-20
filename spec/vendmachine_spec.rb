@@ -101,10 +101,14 @@ describe 'VendingMachine' do
     end
 
     it 'coin return should hold instances of Coin class' do
-      subject.set_coin_return(current_amount)
+      subject.set_coin_return(25)
       expect(subject.coin_return[0]).to be_an_instance_of(Coin)
     end
 
+    it 'coin return for different value works as well' do
+      subject.set_coin_return(10)
+      expect(subject.coin_return[0].value).to eq 10
+    end
   end
 end
 

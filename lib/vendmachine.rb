@@ -74,7 +74,9 @@ class VendingMachine
   def set_coin_return amount
     if amount == 25
       @coin_return.push(QUARTER)
-      @current_amount = 0
+    elsif amount == 10
+      @coin_return.push(DIME)
     end
+    @current_amount = 0
   end
 end
