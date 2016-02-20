@@ -110,6 +110,12 @@ describe 'VendingMachine' do
       expect(subject.coin_return[0].value).to eq 10
     end
   end
+
+  describe '#sort_change' do
+    it 'customer on pushing coin return can get money back' do
+      expect(subject.sort_change(35)).to eq [QUARTER,DIME]
+    end
+  end
 end
 
 describe 'Product' do
