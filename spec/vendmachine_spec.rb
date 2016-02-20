@@ -93,12 +93,18 @@ describe 'VendingMachine' do
   end
 
   describe '#set_coin_return' do
-    let(:current_amount) {25}
+    # let(:current_amount) {25}
 
     it 'leftover change is placed in coin return' do
-      subject.set_coin_return(current_amount)
+      subject.set_coin_return(25)
       expect(subject.coin_return[0].value).to eq 25
     end
+
+    it 'coin return should hold instances of Coin class' do
+      subject.set_coin_return(current_amount)
+      expect(subject.coin_return[0]).to be_an_instance_of(Coin)
+    end
+
   end
 end
 
