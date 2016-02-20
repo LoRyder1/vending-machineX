@@ -1,3 +1,5 @@
+require 'pry'
+
 class Product
   attr_reader :value, :name
   def initialize value, name
@@ -79,4 +81,30 @@ class VendingMachine
     @coin_return.push(coin)
     @current_amount = 0
   end
+
+  def sort_change amount
+    # coin_hash = {QUARTER: 25, DIME: 10, NICKEL: 5}    
+    coin_hash = {QUARTER: 25}
+    sorted = []
+    coin_hash.each_key do |key|
+      binding.pry
+      x = key.to_s
+      how_many = amount/coin_hash[key]
+      # fill(12, array.size, 4)
+      sorted.fill(x,sorted.size, how_many)
+      # sorted.push( x * how_many)
+    end
+    sorted
+  end
 end
+
+p VendingMachine.new.sort_change(50)
+
+# def to_roman(num)
+#   roman = ""
+#   ROMAN_NUMBERS.each_key do |key|
+#     roman += ROMAN_NUMBERS[key] * (num/key)
+#     num %= key
+#   end
+#   roman
+# end
