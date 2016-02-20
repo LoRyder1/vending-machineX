@@ -69,14 +69,14 @@ class VendingMachine
 
   def buy_product product
     @current_amount -= product.value
+    set_coin_return(@current_amount)
   end
 
   def set_coin_return amount
-    if amount == 25
-      @coin_return.push(QUARTER)
-    elsif amount == 10
-      @coin_return.push(DIME)
-    end
+    coin_hash = {QUARTER: 25, DIME: 10, NICKEL: 5}
+    symbol = coin_hash.key(amount)
+    coin = Object.const_get(symbol)
+    @coin_return.push(coin)
     @current_amount = 0
   end
 end
