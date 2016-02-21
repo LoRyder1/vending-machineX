@@ -75,7 +75,6 @@ class VendingMachine
   end
 
   def set_coin_return amount
-    coin_hash = {QUARTER: 25, DIME: 10, NICKEL: 5}
     sort_change(amount).each do |string|
       coin = Object.const_get(string)
       @coin_return.push(coin)
@@ -87,8 +86,8 @@ class VendingMachine
     coin_hash = {QUARTER: 25, DIME: 10, NICKEL: 5}    
     sorted = []
     coin_hash.each_key do |key|
-      how_many = amount/coin_hash[key]
-      sorted.fill(key.to_s,sorted.size, how_many)
+      count = amount/coin_hash[key]
+      sorted.fill(key.to_s,sorted.size, count)
       amount %= coin_hash[key]
     end
     sorted
