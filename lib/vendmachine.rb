@@ -62,6 +62,8 @@ class VendingMachine
   def select_product product
     if @current_amount < product.value
       @display = "#{product.value}"
+    elsif product.available == false
+      @display = 'SOLD OUT'
     else
       buy_product(product)
       @dispenser.push(product)

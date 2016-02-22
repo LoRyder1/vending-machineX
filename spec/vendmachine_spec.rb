@@ -11,10 +11,6 @@ describe 'VendingMachine' do
     allow(product).to receive_messages(value: value, available: avail)
   end
 
-  # def set_availability_product value
-  #   allow(product).to receive(:available).and_return value    
-  # end
-
   describe '#insert_coin' do
     it 'is defined as a method' do
       expect(VendingMachine.method_defined?(:insert_coin)).to eq true
@@ -64,12 +60,6 @@ describe 'VendingMachine' do
         set_product 50; subject.buy_product(product)
         expect(subject.current_amount).to eq 0
       end
-
-      it 'can not buy product when product is sold out or unavailable' do
-        set_product 65, false
-        subject.buy_product(product)
-        expect(subject.current_amount).to eq 50
-      end
     end
 
     describe '#return_coins' do
@@ -112,6 +102,16 @@ describe 'VendingMachine' do
     it 'if current amount < product value display shows product value' do
       set_product 50; subject.select_product(product)
       expect(subject.display).to eq "50"
+    end
+
+    it 'if product is sold out product is not dispensed' do
+      set_product 0, false; subject.select_product(product)
+      expect(subject.dispenser[0]).to eq nil
+    end
+
+    it "if product is sold out display changes to 'SOLD OUT' " do
+      set_product 0, false; subject.select_product(product)
+      expect(subject.display).to eq "SOLD OUT"
     end
   end
 
