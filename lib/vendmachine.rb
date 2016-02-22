@@ -70,6 +70,7 @@ class VendingMachine
   end
 
   def buy_product product
+    return if product.available == false
     @current_amount -= product.value
     set_coin_return(@current_amount) if @current_amount !=0
   end

@@ -7,9 +7,13 @@ describe 'VendingMachine' do
     allow(coin).to receive(:value).and_return value
   end
 
-  def set_product_value value
-    allow(product).to receive(:value).and_return value
+  def set_product value, avail=true
+    allow(product).to receive_messages(value: value, available: avail)
   end
+
+  # def set_availability_product value
+  #   allow(product).to receive(:available).and_return value    
+  # end
 
   describe '#insert_coin' do
     it 'is defined as a method' do
@@ -57,12 +61,15 @@ describe 'VendingMachine' do
     describe '#buy_product' do
 
       it 'subtracts value of product from current amount' do
-        set_product_value 50; subject.buy_product(product)
+        set_product 50; subject.buy_product(product)
         expect(subject.current_amount).to eq 0
       end
 
       it 'can not buy product when product is sold out or unavailable' do
-        
+        set_product 65, false
+        subject.buy_product(product)
+        expect(subject.current_amount).to eq 50
+      end
     end
 
     describe '#return_coins' do
@@ -93,17 +100,17 @@ describe 'VendingMachine' do
     end
 
     it 'selecting a product places it in the dispenser' do
-      set_product_value 0; subject.select_product(product)
+      set_product 0; subject.select_product(product)
       expect(subject.dispenser[0]).to eq product
     end
 
     it 'does not dispense if current amount < product value' do
-      set_product_value 50; subject.select_product(product)
+      set_product 50; subject.select_product(product)
       expect(subject.dispenser[0]).to eq nil
     end
 
     it 'if current amount < product value display shows product value' do
-      set_product_value 50; subject.select_product(product)
+      set_product 50; subject.select_product(product)
       expect(subject.display).to eq "50"
     end
   end
