@@ -1,9 +1,9 @@
 require 'pry'
 
 class Product
-  attr_reader :value, :name
-  def initialize value, name
-    @value, @name = value, name
+  attr_reader :value, :name, :available
+  def initialize value, name, available
+    @value, @name, @available = value, name, available
   end
 end
 
@@ -51,7 +51,6 @@ class VendingMachine
     if coin.value == 0
       @display = 'COIN REJECTED'
     else
-      # total = @current_amount
       @display = "#{current_amount}"
     end
   end

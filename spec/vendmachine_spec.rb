@@ -60,6 +60,9 @@ describe 'VendingMachine' do
         set_product_value 50; subject.buy_product(product)
         expect(subject.current_amount).to eq 0
       end
+
+      it 'can not buy product when product is sold out or unavailable' do
+        
     end
 
     describe '#return_coins' do
@@ -131,12 +134,11 @@ describe 'VendingMachine' do
 end
 
 describe 'Product' do
-  let(:num) {double('num')}
-  let(:name) {double('name')}
-  subject {Product.new(num, name)}
+  let(:x) {double('x')}
+  subject {Product.new(x,x,x)}
 
   it 'new instance takes in two arguments' do
-    expect(subject.method(:initialize).arity).to eq 2
+    expect(subject.method(:initialize).arity).to eq 3
   end
 end
 

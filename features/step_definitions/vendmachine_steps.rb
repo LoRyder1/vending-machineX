@@ -16,7 +16,8 @@ Then(/^the coin will be rejected/) do
 end
 
 #=================================================
-CHIPS = Product.new(50,'chips')
+CHIPS = Product.new(50,'chips',true)
+CANDY = Product.new(65,'candy',false)
 
 When(/^I select a (\S[a-z]*) product$/) do |product|
   @vend.select_product(product)
@@ -36,4 +37,12 @@ end
 
 Then(/^the remaining money is in coin return/) do
   expect(@vend.coin_return[0]).to eq QUARTER
+end
+
+Then(/^the dispenser should be empty/) do
+  expect(@vend.dispenser[0]).to eq nil
+end
+
+And(/^the display reads SOLD OUT/) do
+  expect(@vend.display).to eq "SOLD OUT"
 end
