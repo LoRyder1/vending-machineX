@@ -42,14 +42,18 @@ describe 'VendingMachine' do
   end
 
   describe '#update_display' do
+    let(:current_amount) {50}
+    subject {VendingMachine.new(current_amount)}
+
     it "updates display to 'COIN REJECTED' if coin is rejected" do 
       set_coin_value 0; subject.update_display(coin)
       expect(subject.display).to eq 'COIN REJECTED'
     end
 
     it 'updates display to current amount' do 
-      set_coin_value 25; subject.update_display(coin)
-      expect(subject.display).to eq '25'
+      set_coin_value 25; 
+      subject.update_display(coin)
+      expect(subject.display).to eq '50'
     end
   end
 
@@ -121,10 +125,13 @@ describe 'VendingMachine' do
     subject {VendingMachine.new(current_amount)}
 
     it 'pushing return coins returns change' do
-      expect(subject.return_coins).to eq ["QUARTER", "DIME"]
+      total = subject.return_coins[0].value + subject.return_coins[1].value
+      expect(total).to eq 35
     end
 
-    it 'pushing return coins sets display back to INSERT COIN'
+    it 'pushing return coins sets display back to INSERT COIN' do
+      expect(subject.display).to eq 'INSERT COIN'
+    end
   end
 end
 

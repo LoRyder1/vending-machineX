@@ -51,7 +51,8 @@ class VendingMachine
     if coin.value == 0
       @display = 'COIN REJECTED'
     else
-      @display = "#{coin.value}"
+      # total = @current_amount
+      @display = "#{current_amount}"
     end
   end
 
@@ -72,6 +73,12 @@ class VendingMachine
   def buy_product product
     @current_amount -= product.value
     set_coin_return(@current_amount) if @current_amount !=0
+  end
+
+  def return_coins
+    set_coin_return(@current_amount)
+    @coin_return
+    # @display = 'INSERT COIN'
   end
 
   def set_coin_return amount
