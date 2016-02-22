@@ -115,6 +115,17 @@ describe 'VendingMachine' do
       expect(subject.sort_change(35)).to eq ["QUARTER","DIME"]
     end
   end
+
+  describe '#return_coins' do
+    let(:current_amount) {35}
+    subject {VendingMachine.new(current_amount)}
+
+    it 'pushing return coins returns change' do
+      expect(subject.return_coins).to eq ["QUARTER", "DIME"]
+    end
+
+    it 'pushing return coins sets display back to INSERT COIN'
+  end
 end
 
 describe 'Product' do
