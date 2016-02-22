@@ -13,7 +13,6 @@ describe 'VendingMachine' do
 
   def set_current_amount value
     allow(subject).to receive(:current_amount).and_return value
-    # subject.current_amount = value
   end
 
   describe '#insert_coin' do
