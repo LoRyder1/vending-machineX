@@ -77,8 +77,8 @@ class VendingMachine
 
   def return_coins
     set_coin_return(@current_amount)
+    @display = 'INSERT COIN'
     @coin_return
-    # @display = 'INSERT COIN'
   end
 
   def set_coin_return amount

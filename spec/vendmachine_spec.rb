@@ -11,10 +11,6 @@ describe 'VendingMachine' do
     allow(product).to receive(:value).and_return value
   end
 
-  def set_current_amount value
-    allow(subject).to receive(:current_amount).and_return value
-  end
-
   describe '#insert_coin' do
     it 'is defined as a method' do
       expect(VendingMachine.method_defined?(:insert_coin)).to eq true
@@ -41,20 +37,44 @@ describe 'VendingMachine' do
     end
   end
 
-  describe '#update_display' do
+  context 'preset current amount' do
     let(:current_amount) {50}
     subject {VendingMachine.new(current_amount)}
+    
+    describe '#update_display' do
 
-    it "updates display to 'COIN REJECTED' if coin is rejected" do 
-      set_coin_value 0; subject.update_display(coin)
-      expect(subject.display).to eq 'COIN REJECTED'
+      it "updates display to 'COIN REJECTED' if coin is rejected" do 
+        set_coin_value 0; subject.update_display(coin)
+        expect(subject.display).to eq 'COIN REJECTED'
+      end
+
+      it 'updates display to current amount' do
+        set_coin_value 25; subject.update_display(coin)
+        expect(subject.display).to eq '50'
+      end
     end
 
-    it 'updates display to current amount' do 
-      set_coin_value 25; 
-      subject.update_display(coin)
-      expect(subject.display).to eq '50'
+    describe '#buy_product' do
+
+      it 'subtracts value of product from current amount' do
+        set_product_value 50; subject.buy_product(product)
+        expect(subject.current_amount).to eq 0
+      end
     end
+
+    describe '#return_coins' do
+
+      it 'pushing return coins returns change' do
+        total = subject.return_coins[0].value + subject.return_coins[1].value
+        expect(total).to eq 50
+      end
+
+      it 'pushing return coins sets display back to INSERT COIN' do
+        set_coin_value 20; subject.update_display(coin)
+        subject.return_coins
+        expect(subject.display).to eq 'INSERT COIN'
+      end
+    end      
   end
 
   describe '#reject_coin' do
@@ -85,18 +105,7 @@ describe 'VendingMachine' do
     end
   end
 
-  describe '#buy_product' do
-    let(:current_amount) {50}
-    subject {VendingMachine.new(current_amount)}
-
-    it 'subtracts value of product from current amount' do
-      set_product_value 50; subject.buy_product(product)
-      expect(subject.current_amount).to eq 0
-    end
-  end
-
   describe '#set_coin_return' do
-    # let(:current_amount) {25}
 
     it 'leftover change is placed in coin return' do
       subject.set_coin_return(25)
@@ -117,20 +126,6 @@ describe 'VendingMachine' do
   describe '#sort_change' do
     it 'customer on pushing coin return can get money back' do
       expect(subject.sort_change(35)).to eq ["QUARTER","DIME"]
-    end
-  end
-
-  describe '#return_coins' do
-    let(:current_amount) {35}
-    subject {VendingMachine.new(current_amount)}
-
-    it 'pushing return coins returns change' do
-      total = subject.return_coins[0].value + subject.return_coins[1].value
-      expect(total).to eq 35
-    end
-
-    it 'pushing return coins sets display back to INSERT COIN' do
-      expect(subject.display).to eq 'INSERT COIN'
     end
   end
 end
