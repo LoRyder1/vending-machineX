@@ -31,8 +31,8 @@ Then(/^the current amount is (\d+)$/) do |amount|
   expect(@vend.current_amount).to eq amount
 end
 
-Then(/^the display reads THANK YOU$/) do
-  expect(@vend.display).to eq "THANK YOU"
+Then(/^the display reads (\w+\s+\w+\Z)$/) do |msg|
+  expect(@vend.display).to eq msg
 end
 
 Then(/^the remaining money is in coin return/) do
@@ -41,8 +41,4 @@ end
 
 Then(/^the dispenser should be empty/) do
   expect(@vend.dispenser[0]).to eq nil
-end
-
-And(/^the display reads SOLD OUT/) do
-  expect(@vend.display).to eq "SOLD OUT"
 end
