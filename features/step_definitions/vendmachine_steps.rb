@@ -42,3 +42,8 @@ end
 Then(/^the dispenser should be empty/) do
   expect(@vend.dispenser[0]).to eq nil
 end
+
+Given(/^the vending machine needs exact change/) do
+  @vend = VendingMachine.new
+  @vend.no_change_left
+end
