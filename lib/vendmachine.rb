@@ -42,6 +42,10 @@ class VendingMachine
     @dispenser = []
   end
 
+  def no_change_left
+    @display = 'EXACT CHANGE'
+  end
+
   def insert_coin coin
     @current_amount += coin.value
     update_display(coin)

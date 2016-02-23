@@ -1,4 +1,4 @@
-Transform(/^(?!THANK YOU|SOLD OUT)(-?\S[a-z]*)/) do |coin|
+Transform(/^(?!THANK YOU|SOLD OUT|EXACT CHANGE)(-?\S[a-z]*)/) do |coin|
   Object.const_get(coin.upcase)
 end
 
