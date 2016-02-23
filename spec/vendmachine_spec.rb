@@ -138,6 +138,13 @@ describe 'VendingMachine' do
       expect(subject.sort_change(35)).to eq ["QUARTER","DIME"]
     end
   end
+
+  describe '#no_change_left' do
+    it "no change left gives display of 'EXACT CHANGE'" do
+      subject.no_change_left
+      expect(subject.display).to eq 'EXACT CHANGE'
+    end
+  end
 end
 
 describe 'Product' do
